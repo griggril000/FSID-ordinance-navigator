@@ -26,11 +26,11 @@
       let errorMessage = '';
 
       for (const id of idArray) {
-        if (isValidId(id)) {
+        if (!isValidId(id)) {
+          errorMessage += `Invalid ID: ${id}\n`;
+        } else {
           const url = `https://www.familysearch.org/tree/person/ordinances/${id}`;
           window.open(url, '_blank');
-        } else {
-          errorMessage += `Invalid ID: ${id}\n`;
         }
       }
 
