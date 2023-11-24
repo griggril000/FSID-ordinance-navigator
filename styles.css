@@ -1,28 +1,67 @@
-.error-message {
-    color: white;
-    font-weight: bold;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f44336;
-    border-radius: 5px;
-    display: none;
-}
-
-#inputIDs {
-    width: 100%;
-    height: 150px;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-
-button {
-    padding: 10px 20px;
-    border: 1px solid #007bff;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-}
-
+/* Set the base styles for the body element */
 body {
     font-family: sans-serif;
-}
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Define the styles for the caution message container */
+  #cautionMessage {
+    background-color: #ffebcd; /* Use a light yellow background for the caution message */
+    border: 1px solid #f5c695; /* Add a thin orange border */
+    border-radius: 4px; /* Apply rounded corners */
+    padding: 20px; /* Provide some space around the message content */
+    margin-bottom: 10px; /* Add some spacing below the caution message */
+    font-weight: bold; /* Emphasize the caution message */
+    text-align: center; /* Center the message text */
+  }
+  
+  /* Style the input fields */
+  #inputIDs {
+    width: 100%; /* Make the input fields full-width */
+    padding: 10px; /* Provide some padding inside the input fields */
+    border: 1px solid #ccc; /* Add a light gray border */
+    border-radius: 4px; /* Apply rounded corners */
+    resize: none; /* Disable the resizing of input fields */
+  }
+  
+  /* Style the button element */
+  button {
+    background-color: #007bff; /* Use a blue background for the button */
+    color: #fff; /* Use white text for the button */
+    padding: 10px 20px; /* Provide some padding inside the button */
+    border: none; /* Remove the default button border */
+    border-radius: 4px; /* Apply rounded corners */
+    font-size: 16px; /* Set the font size for the button text */
+    cursor: pointer; /* Make the cursor change to a pointer when hovering over the button */
+    width: 100%; /* Make the button full-width */
+  }
+  
+  /* Define styles for the error message container */
+  #errorMessage {
+    background-color: #f44336; /* Use a red background for the error message */
+    color: #fff; /* Use white text for the error message */
+    padding: 10px; /* Provide some padding inside the error message */
+    border-radius: 4px; /* Apply rounded corners */
+    margin-bottom: 10px; /* Add some spacing below the error message */
+    display: none; /* Initially hide the error message */
+  }
+  
+  /* Responsive styles for smaller screens (max-width 768px) */
+  @media (max-width: 768px) {
+    /* Adjust padding for the caution message on smaller screens */
+    #cautionMessage {
+      padding: 10px;
+    }
+  
+    /* Adjust width and margin for the input fields on smaller screens */
+    #inputIDs {
+      width: 95%; /* Make the input fields slightly narrower */
+      margin: 10px auto; /* Center the input fields horizontally */
+    }
+  
+    /* Add some margin below the button on smaller screens */
+    button {
+      margin-bottom: 10px;
+    }
+  }  
