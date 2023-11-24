@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <title>Open Person Pages</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <style>
         .error-message {
             color: red;
@@ -16,64 +15,38 @@
 </head>
 
 <body>
+    <p>Each ID in the textbox opens a new tab. Opening too many tabs can slow down your computer. Proceed with caution.
+    </p>
     <textarea id="inputIDs" placeholder="Enter each FamilySearch ID on a new line (ID example: ABCD-123)" rows="5"
         cols="50"></textarea>
-
-    <input type="checkbox" id="preventOpenOnInvalidID">
-    <label for="preventOpenOnInvalidID">Prevent opening tabs for invalid IDs</label>
-
     <button onclick="openPages()">Open Person Pages</button>
-
     <p id="errorMessage" class="error-message"></p>
 
     <script>
         function openPages() {
-            // Retrieve the input IDs
-            const inputIDs = document.getElementById('inputIDs').value;
-            // Split the input IDs into an array
-            const idArray = inputIDs.split(/[,|\n]+/);
+            const inputIDs = document.getElementById('inputIDs').value.trim().toUpperCase(); // Trim whitespace and convert to uppercase
+            const idArray = inputIDs.split(/[,|\n]+/); // Split input string into an array of IDs
 
-            // Initialize error message and skip opening tabs flag
             let errorMessage = '';
-            let skipOpeningTabs = false;
 
-            // Check each ID for validity
             for (const id of idArray) {
-                // Check if the ID is valid
                 if (!isValidId(id)) {
-                    // Add the invalid ID to the error message
-                    errorMessage += `Invalid ID: ${id}\n`;
-                    // Set skip opening tabs flag to true
-                    skipOpeningTabs = true;
+                    errorMessage += `${id}\n`;
+                } else {
+                    const url = `https://www.familysearch.org/tree/person/ordinances/${id}`;
+                    window.open(url, '_blank');
                 }
             }
 
-            // Update the error message element
             if (errorMessage) {
-                document.getElementById('errorMessage').textContent = errorMessage;
+                document.getElementById('errorMessage').textContent = "You entered one or more invalid IDs: " + errorMessage + ". Please use the format XXXX-XXX";
             } else {
                 document.getElementById('errorMessage').textContent = '';
-            }
-
-            // Open tabs for valid IDs if the checkbox is unchecked
-            if (!skipOpeningTabs && !document.getElementById('preventOpenOnInvalidID').checked) {
-                // Iterate through the IDs
-                for (const id of idArray) {
-                    // Check if the ID is valid
-                    if (isValidId(id)) {
-                        // Construct the URL for the person page
-                        const url = `https://www.familysearch.org/tree/person/ordinances/${id}`;
-                        // Open the person page in a new tab
-                        window.open(url, '_blank');
-                    }
-                }
             }
         }
 
         function isValidId(id) {
-            // Define a regular expression for valid IDs
             const regex = /^[A-Z0-9]{4}-[A-Z0-9]{3}$/;
-            // Return whether the ID matches the regex
             return regex.test(id);
         }
     </script>
