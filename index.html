@@ -5,13 +5,7 @@
     <meta charset="UTF-8">
     <title>Open Person Pages</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .error-message {
-            color: red;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -30,7 +24,10 @@
             let errorMessage = '';
 
             for (const id of idArray) {
-                if (!isValidId(id)) {
+                if (!inputIDs) {
+                    alert('Please enter at least one FamilySearch ID.');
+                }
+                else if (!isValidId(id)) {
                     errorMessage += `${id}\n`;
                 } else {
                     const url = `https://www.familysearch.org/tree/person/ordinances/${id}`;
@@ -39,9 +36,13 @@
             }
 
             if (errorMessage) {
-                document.getElementById('errorMessage').textContent = "You entered one or more invalid IDs: " + errorMessage + ". Please use the format XXXX-XXX";
+                // Show error message paragraph if there is an error.
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = "You entered one or more invalid IDs: " + errorMessage + ". Please use the format XXXX-XXX.";
             } else {
                 document.getElementById('errorMessage').textContent = '';
+                // Hide error message paragraph if it is empty
+                document.getElementById('errorMessage').style.display = 'none';
             }
         }
 
